@@ -177,24 +177,6 @@ a:hover {
     border-radius: 4px;
 }
 
-/* Placeholder styling (remove when real embed is added) */
-.raindrop-placeholder {
-    border: 2px dashed var(--text-muted);
-    border-radius: 8px;
-    padding: calc(var(--spacing-unit) * 2);
-    text-align: center;
-    color: var(--text-muted);
-}
-
-.raindrop-placeholder p {
-    margin-bottom: 0.5rem;
-}
-
-.placeholder-note {
-    font-size: 0.85rem;
-    font-style: italic;
-}
-
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
     html {
