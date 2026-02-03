@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifold Matters</title>
+    
+    <!-- Google Fonts - JetBrains Mono for monospace look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn" data-lang="nl">NL</button>
+        <span class="lang-separator">|</span>
+        <button class="lang-btn active" data-lang="en">EN</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <button class="nav-link active" data-section="home" data-text-nl="home" data-text-en="home">home</button>
+        <span class="nav-separator">|</span>
+        <button class="nav-link" data-section="about" data-text-nl="over" data-text-en="about">about</button>
+        <span class="nav-separator">|</span>
+        <button class="nav-link" data-section="explorations" data-text-nl="exploraties" data-text-en="explorations">explorations</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="section-content">
+                <h1 class="page-title">Manifold Matters</h1>
+                <p data-text-nl="Welkom! Mijn naam is Barbera Brakel en onder de verzamelnaam Manifold Matters onderneem ik een veelvoud aan activiteiten op het gebied van online research, generatieve kunstmatige intelligentie en (privacy-bevorderende) decentrale technologieën. Gefascineerd door AI als hulpmiddel om ons denkvermogen te versterken, onderzoek ik hoe het probleemoplossende vaardigheden kan aanscherpen, creativiteit kan aanwakkeren en kennisbeheer kan transformeren."
+                   data-text-en="Welcome! My name is Barbera Brakel, and under the collective name Manifold Matters, I engage in a diverse range of activities within the realm of online research, generative artificial intelligence, and (privacy-enhancing) decentralized technologies. Fascinated by AI as a tool to enhance our cognitive abilities, I explore how it can sharpen problem-solving skills, ignite creativity, and transform knowledge management.">
+                    Welcome! My name is Barbera Brakel, and under the collective name Manifold Matters, I engage in a diverse range of activities within the realm of online research, (generative) artificial intelligence, and (privacy-enhancing) decentralized technologies. Fascinated by AI as a tool to enhance our cognitive abilities, I explore how it can sharpen problem-solving skills, ignite creativity, and transform knowledge management.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-content">
+                <p data-text-nl="Met een jarenlange achtergrond in zowel de culturele sector als de intelligence- en opsporingswereld, heb ik een rijke ervaring opgebouwd in het onderzoek doen naar en met nieuwe technologieën. Vanuit dit brede perspectief ben ik in staat verbindingen te leggen tussen cultuur, innovatieve technologie en privacy. Ik adviseer kenniswerkers over hoe zij een weg kunnen vinden in, en slimmer kunnen werken met, de meest recente AI-toepassingen, afgestemd op hun specifieke behoeften en uitdagingen. Daarnaast initieer ik met deze unieke mix van kennis en vaardigheden eigen projecten."
+                   data-text-en="With a background spanning years in both the cultural sector and the intelligence community and law enforcement, I have built up a rich experience in researching with and into new technologies. From this broad perspective, I am able to create connections between culture, innovative technology, and privacy. I advise knowledge workers on how to navigate and work more efficiently with the most recent applications in the field of AI. Additionally, with this unique mix of knowledge and skills, I initiate my own projects.">
+                    With a background spanning years in both the cultural sector and the intelligence community and law enforcement, I have built up a rich experience in researching with and into new technologies. From this broad perspective, I am able to create connections between culture, innovative technology, and privacy. I advise knowledge workers on how to navigate and work more efficiently with the most recent applications in the field of AI. Additionally, with this unique mix of knowledge and skills, I initiate my own projects.
+                </p>
+                <p class="contact">
+                    <span class="arrow">&gt;&gt;</span> <a href="#" class="email-link" data-text-nl="e-mail" data-text-en="mail">mail</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Explorations Section -->
+        <section id="explorations" class="section">
+            <div class="section-content">
+                <div class="raindrop-embed">
+                    <iframe 
+                        style="border: 0; width: 100%; height: 450px;" 
+                        allowfullscreen 
+                        frameborder="0" 
+                        src="https://raindrop.io/manifoldmatters/explorations-by-barbera-46836702/embed/theme=light">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ===== Language Toggle =====
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        // Initialize language on load
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            
+            // Update active state on language buttons
+            langBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-text-nl][data-text-en]').forEach(el => {
+                const text = lang === 'nl' ? el.dataset.textNl : el.dataset.textEn;
+                el.textContent = text;
+            });
+
+            // Update html lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Language button click handlers
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.dataset.lang);
+            });
+        });
+
+        // Set initial language
+        setLanguage(currentLang);
+
+        // ===== Section Navigation =====
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+
+        function showSection(sectionId) {
+            // Update active states
+            sections.forEach(section => {
+                section.classList.toggle('active', section.id === sectionId);
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.dataset.section === sectionId);
+            });
+        }
+
+        // Navigation click handlers
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                showSection(link.dataset.section);
+            });
+        });
+
+        // ===== Spam-protected Email =====
+        // Email is constructed via JS to prevent scraping
+        const emailLink = document.querySelector('.email-link');
+        if (emailLink) {
+            const user = 'info';
+            const domain = 'manifoldmatters.com';
+            emailLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = 'mailto:' + user + '@' + domain;
+            });
+        }
+    </script>
+</body>
+</html>
