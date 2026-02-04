@@ -15,9 +15,9 @@
 <body>
     <!-- Language Toggle -->
     <div class="lang-toggle">
-        <button class="lang-btn" data-lang="nl">nl</button>
+        <button class="lang-btn active" data-lang="nl">nl</button>
         <span class="lang-separator">|</span>
-        <button class="lang-btn active" data-lang="en">en</button>
+        <button class="lang-btn" data-lang="en">en</button>
     </div>
 
     <!-- Navigation -->
@@ -74,7 +74,7 @@
     <script>
         // ===== Language Toggle =====
         const langBtns = document.querySelectorAll('.lang-btn');
-        let currentLang = localStorage.getItem('lang') || 'en';
+        let currentLang = localStorage.getItem('lang') || 'nl';
 
         // Initialize language on load
         function setLanguage(lang) {
